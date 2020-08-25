@@ -13,7 +13,7 @@ app.get("/favicon.ico", (req, res) => res.sendStatus(204));
 
 // ** 404 handler */
 app.use(function (req, res) {
-  debugger
+  debugger;
   return new ExpressError("Not Found", 404);
 });
 
