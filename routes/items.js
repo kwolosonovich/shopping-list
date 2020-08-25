@@ -23,11 +23,12 @@ app.get("/items/:name", (req, res, next) => {
 });
 
 app.patch("/items/:name", (res, req, next) => {
-  // question 3 - how to access req.body
+  // how to access req.body
   updateItem = req.params.name;
 });
 
 app.delete("/items/:delte", (res, req, next) => {
+    // how to access req.body
   deleteItem = req.params.name;
   items.splice(deleteItem);
 });
