@@ -1,34 +1,38 @@
 const express = require("express");
 const router = new express.Router();
 const ExpressError = require("../expressError");
-const items = require("../fakeDb");
 
+// const Item = require('../item')
 
-app.get("/items", (req, res, next) => {
-  // question 1 - test route using request.headers
-  console.log(request.headers);
-  debugger;
-  return res.json({ items });
-});
+const ITEMS = require("../fakeDb");
 
-app.post("/items", (req, res, next) => {
+// const ITEMS = [{name: "popsicle", price: 1.45}]
+
+router.get('/', (req, res, next) => {
+  // question 1 - get request object - request.headers
+  // console.log(request.headers);
+  debugger
+  return res.json({ items: ITEMS });
+})
+
+router.post("/", (req, res, next) => {
   // question 2 - test route using req.body
   items.push(req.body.name);
 });
 
-app.get("/items/:name", (req, res, next) => {
+router.get("/:name", (req, res, next) => {
   // question 3 - how to access req.body
   reqItem = req.params.name;
   res.json({ items: reqItem });
 });
 
-app.patch("/items/:name", (res, req, next) => {
+router.patch("/:name", (res, req, next) => {
   // how to access req.body
   updateItem = req.params.name;
 });
 
-app.delete("/items/:delte", (res, req, next) => {
-    // how to access req.body
+router.delete("/:delte", (res, req, next) => {
+  // how to access req.body
   deleteItem = req.params.name;
   items.splice(deleteItem);
 });
