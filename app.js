@@ -1,12 +1,17 @@
 const express = require("express");
 const ExpressError = require("./expressError");
 const app = express();
-const items = require("/.fakeDb")
+const items = require("./fakeDb")
 
 app.use(express.json());
 
-// ** 404 handler */
+app.get("/favicon.ico", (req, res) => res.sendStatus(204));
 
+app.get("/items", (req, res, next) => {
+    return res.send(items)
+})
+
+// ** 404 handler */
 app.use(function (req, res, next) {
   return new ExpressError("Not Found", 404);
 });
