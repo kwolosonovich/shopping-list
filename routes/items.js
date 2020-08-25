@@ -22,9 +22,8 @@ router.get("/:name", (req, res, next) => {
 });
 
 router.patch("/:name", (res, req, next) => {
-  debugger;
   let updateItem = req.params.name;
-  reqItem = ITEMS.find( matchItem => matchName.name === reqItem) 
+  reqItem = ITEMS.find( item => item.name === reqItem) 
   reqItem.name = req.body.name
   reqItem.price = req.body.price
   res.json('patch route')
