@@ -2,33 +2,28 @@ const express = require("express");
 const router = new express.Router();
 const ExpressError = require("../expressError");
 
-// const Item = require('../item')
-
 const ITEMS = require("../fakeDb");
 
-// const ITEMS = [{name: "popsicle", price: 1.45}]
-
 router.get('/', (req, res, next) => {
-  // question 1 - get request object - request.headers
-  // console.log(request.headers);
-  debugger
   return res.json({ items: ITEMS });
 })
 
 router.post("/", (req, res, next) => {
-  // question 2 - test route using req.body
-  items.push(req.body.name);
+  // ITEMS.push(req.body.name);
+  newItem = req.body
+  ITEMS.push(newItem)
+  res.json({ added: newItem})
 });
 
 router.get("/:name", (req, res, next) => {
-  // question 3 - how to access req.body
-  reqItem = req.params.name;
+  let reqItem = req.params.name;
+  reqItem = ITEMS.find( matchItem => matchName.name === reqItem)
   res.json({ items: reqItem });
 });
 
 router.patch("/:name", (res, req, next) => {
-  // how to access req.body
-  updateItem = req.params.name;
+  let updateItem = req.params.name;
+  reqItem = ITEMS.find( matchItem => matchName.name === reqItem) 
 });
 
 router.delete("/:delte", (res, req, next) => {
