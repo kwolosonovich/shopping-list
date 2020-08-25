@@ -7,13 +7,12 @@ const app = express();
 
 app.use(express.json());
 app.use(morgan('dev'))
-app.use("/items", itemsRoutes)
+app.use("/items", itemsRoutes);
 
 app.get("/favicon.ico", (req, res) => res.sendStatus(204));
 
 // ** 404 handler */
 app.use(function (req, res) {
-  debugger;
   return new ExpressError("Not Found", 404);
 });
 

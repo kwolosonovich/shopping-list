@@ -9,7 +9,6 @@ router.get('/', (req, res, next) => {
 })
 
 router.post("/", (req, res, next) => {
-  // ITEMS.push(req.body.name);
   newItem = req.body
   if (newItem.name === undefined || newItem.price === undefined) {
     throw new ExpressError('Name and price required', 400)
@@ -28,22 +27,25 @@ router.get("/:name", (req, res, next) => {
 });
 
 router.patch("/:name", (res, req, next) => {
-  let reqItem = req.params.name;
+  let reqItem = req.req.params.name;
     if (reqItem === undefined) {
       throw new ExpressError("Item not found", 404);
     }
   reqItem = ITEMS.find( item => item.name === reqItem) 
-  reqItem.name = req.body.name
-  reqItem.price = req.body.price
-  res.json('patch route')
+  reqItem.name = req.req.body.name
+  reqItem.price = req.req.body.price
+  res.json({ updated: reqItem})
 });
 
-router.delete("/:delte", (res, req, next) => {
-  deleteItem = req.params.name;
+router.delete("/:name", (res, req, next) => {
+  debugger
+  deleteItem = req.req.params.name;
   if (deleteItem === undefined) {
     throw new ExpressError("Item not found", 404);
   }
-  items.splice(deleteItem);
+  ITEMS.splice(deleteItem, 1);
+  msg = "deleted"
+  res.json({ message: msg })
 });
 
 
