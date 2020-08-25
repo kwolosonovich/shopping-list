@@ -26,18 +26,18 @@ router.get("/:name", (req, res, next) => {
   res.json({ items: reqItem });
 });
 
-router.patch("/:name", (res, req, next) => {
+router.patch("/:name", (req,res, next) => {
   let reqItem = req.req.params.name;
-    if (reqItem === undefined) {
-      throw new ExpressError("Item not found", 404);
-    }
-  reqItem = ITEMS.find( item => item.name === reqItem) 
-  reqItem.name = req.req.body.name
-  reqItem.price = req.req.body.price
-  res.json({ updated: reqItem})
+  if (reqItem === undefined) {
+    throw new ExpressError("Item not found", 404);
+  }
+  reqItem = ITEMS.find((item) => item.name === reqItem);
+  reqItem.name = req.req.body.name;
+  reqItem.price = req.req.body.price;
+  res.json({ updated: reqItem });
 });
 
-router.delete("/:name", (res, req, next) => {
+router.delete("/:name", (req, res, next) => {
   debugger
   deleteItem = req.req.params.name;
   if (deleteItem === undefined) {
