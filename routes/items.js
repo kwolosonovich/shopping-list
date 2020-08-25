@@ -17,7 +17,7 @@ router.post("/", (req, res, next) => {
 
 router.get("/:name", (req, res, next) => {
   let reqItem = req.params.name;
-  reqItem = ITEMS.find( matchItem => matchName.name === reqItem)
+  reqItem = ITEMS.find( item => item.name === reqItem)
   res.json({ items: reqItem });
 });
 
